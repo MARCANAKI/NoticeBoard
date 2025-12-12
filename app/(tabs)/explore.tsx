@@ -1,17 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
-import { FilterEdit } from "iconsax-react-native";
-import { Dislike, Flag, Like1, Send2 } from "iconsax-reactjs";
+import { Dislike, FilterEdit, Flag, Like1, Send2 } from "iconsax-react-native";
 import React, { useState } from "react";
 import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Switch } from "react-native-gesture-handler";
 
-import FilterSelectPopup from "./FilterSelectPopup";
-import MainFilterPopup from "./MainFilterPopup";
+import FilterSelectPopup from "../../components/FilterSelectPopup";
+import MainFilterPopup from "../../components/MainFilterPopup";
 
 import FilterData from "../../constants/FilterData";
-
-
-
 
 
 
@@ -362,7 +358,7 @@ const NoticeBoard = () => {
             <View style={styles.actionItems}>
               <View style={styles.actionItem}>
                 <Like1 size={18} color="#697689"/>
-                <Text style={styles.actionText}>Like</Text>
+                <Text style={styles.actionText}>Lik</Text>
               </View>
               <View style={styles.actionItem}>
                 <Dislike size={18} color="#697689"/>
@@ -430,14 +426,8 @@ const NoticeBoard = () => {
       </View>
     </Modal>
   </ScrollView>
-
-
   );
-};
-
-
-
-  
+};  
 
 export default NoticeBoard;
 
