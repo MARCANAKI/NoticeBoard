@@ -1,11 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Dislike, FilterEdit, Flag, Like1, Send2 } from "iconsax-reactjs";
+import { FilterEdit } from "iconsax-react-native";
+import { Dislike, Flag, Like1, Send2 } from "iconsax-reactjs";
 import React, { useState } from "react";
 import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Switch } from "react-native-gesture-handler";
 
 import FilterSelectPopup from "./FilterSelectPopup";
 import MainFilterPopup from "./MainFilterPopup";
+
+import FilterData from "../../constants/FilterData";
 
 
 
@@ -274,7 +277,7 @@ const NoticeBoard = () => {
       <FilterSelectPopup
         visible={showSchool}
         title="School"
-        data={schoolList}
+        data={FilterData.schoolList}
         onClose={() => setShowSchool(false)}
         onApply={setSchool}
       />
@@ -282,7 +285,7 @@ const NoticeBoard = () => {
       <FilterSelectPopup
         visible={showFaculty}
         title="Faculty"
-        data={faculty}
+        data={FilterData.facultyList}
         onClose={() => setShowFaculty(false)}
         onApply={setFaculty}
       />
@@ -290,7 +293,7 @@ const NoticeBoard = () => {
       <FilterSelectPopup
         visible={showDept}
         title="Department"
-        data={departmentList}
+        data={FilterData.departmentList}
         onClose={() => setShowDept(false)}
         onApply={setDepartment}
       />
@@ -298,7 +301,7 @@ const NoticeBoard = () => {
       <FilterSelectPopup
         visible={showClass}
         title="Class"
-        data={classList}
+        data={FilterData.classList}
         onClose={() => setShowClass(false)}
         onApply={setClassLevel}
       />
