@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Dislike, FilterEdit, Flag, Like1, Send2 } from "iconsax-react-native";
+import { Dislike, Flag, Like1, Send2 } from "iconsax-react-native";
 import React, { useState } from "react";
 import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Switch } from "react-native-gesture-handler";
@@ -7,8 +7,8 @@ import { Switch } from "react-native-gesture-handler";
 import FilterSelectPopup from "../../components/FilterSelectPopup";
 import MainFilterPopup from "../../components/MainFilterPopup";
 
+import NoticeCard from "../../components/NoticeCard";
 import FilterData from "../../constants/FilterData";
-
 
 
 interface Notice {
@@ -218,26 +218,18 @@ const NoticeBoard = () => {
 
   return (
     <ScrollView style={styles.container}>
+
       {/* Add Button */}
       <View>
+        <TouchableOpacity style={styles.filterButton}>
+          <Ionicons name="chevron-back-sharp" size={24} color="#111" />
+        </TouchableOpacity>
         <View style={styles.addButton}>
           <TouchableOpacity style={styles.AddButtonCon}>
             <Ionicons name="add-circle" size={20} color="#6A0DFF" />
-            <Text style={styles.NoticesText}>My Notices</Text>
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Notice Board</Text>
-        <View style={styles.filterButton}>
-          <TouchableOpacity onPress={() => setShowMain(true)}>
-            <FilterEdit size={24} variant="Linear" color="#697689" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
       {/* SELECTED FILTER TAGS */}
       <View style={styles.tagContainer}>
         {school && <View style={styles.tag}>
@@ -271,7 +263,7 @@ const NoticeBoard = () => {
         department={department}
         className={classLevel}
       />
-      
+
       <FilterSelectPopup
         visible={showSchool}
         title="School"
@@ -331,20 +323,20 @@ const NoticeBoard = () => {
             </View>
 
             <View
+             
               style={[
-                styles.badge,
-                { backgroundColor: item.themed_notice.secondary_color + "33" },
               ]}
             >
-              <Text
-                style={[
-                  styles.badgeText,
-                  { color: item.themed_notice.primary_color },
-                ]}
-              >
+              
+                
+                
+                
+                
+              
                 {item.type.toUpperCase()}
-              </Text>
+              
             </View>
+            <NoticeCard />
           </View>
 
           {/* Notice Image */}
@@ -482,10 +474,10 @@ const styles = StyleSheet.create({
   },
 
   time: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#777",
     marginTop: 3,
-    
+
 
   },
 
@@ -663,7 +655,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginBottom: 20,
   },
-  tag: { 
+  tag: {
     flexDirection: "row",
     backgroundColor: "#7A32FF",
     paddingVertical: 6,
