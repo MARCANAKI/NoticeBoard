@@ -232,25 +232,11 @@ const NoticeBoard = () => {
       <View style={styles.header}>
         <Text style={styles.title}>Notice Board</Text>
         <View style={styles.filterButton}>
-          <TouchableOpacity onPress={() => setFilterVisible(true)}>
+          <TouchableOpacity onPress={() => setShowMain(true)}>
             <FilterEdit size={24} variant="Linear" color="#697689" />
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* BUTTONS TO OPEN POPUPS */}
-      <TouchableOpacity onPress={() => setShowSchool(true)}>
-        <Text>Choose School</Text>
-      </TouchableOpacity>
-
-      {/* FILTER BUTTON */}
-      <TouchableOpacity
-        onPress={() => setShowMain(true)}
-        style={styles.filterBtn}
-      >
-        <Ionicons name="filter" size={22} color="#fff" />
-        <Text style={styles.filterText}>Filter</Text>
-      </TouchableOpacity>
 
       {/* SELECTED FILTER TAGS */}
       <View style={styles.tagContainer}>
@@ -676,7 +662,8 @@ const styles = StyleSheet.create({
     gap: 10,
     marginBottom: 20,
   },
-  tag: {
+  tag: { 
+    flexDirection: "row",
     backgroundColor: "#7A32FF",
     paddingVertical: 6,
     paddingHorizontal: 14,
