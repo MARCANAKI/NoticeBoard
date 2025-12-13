@@ -65,12 +65,12 @@ const MainFilterPopup = ({
               style={styles.optionRow}
               onPress={item.action}
             >
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 10, justifyContent:"space-between"}}>
                 <Text style={styles.optionText}>{item.label}</Text>
                 <Ionicons name="chevron-forward" size={20} />
               </View>
               {item.name &&
-                <Text style={styles.optionText}>
+                <Text style={styles.subtitle}>
                   {item.name}
                 </Text>
               }

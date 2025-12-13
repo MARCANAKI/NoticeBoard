@@ -189,7 +189,7 @@ const NoticeBoard = () => {
    * @param {string | Date} date The date to format.
    * @returns {string} The formatted relative time string.
    */
-  const formatDistanceToNow = (date: string | Date): string => {
+ const  formatDistanceToNow = (date: string | Date): string => {
     const now = new Date();
     const diffInSeconds = Math.floor((now.getTime() - new Date(date).getTime()) / 1000);
 
@@ -219,10 +219,10 @@ const NoticeBoard = () => {
   return (
     <ScrollView style={styles.container}>
       {/* Add Button */}
-      <View>
+      <View>  
         <View style={styles.addButton}>
           <TouchableOpacity style={styles.AddButtonCon}>
-            <Ionicons name="add-circle" size={20} color="#6A0DFF" />
+            <Ionicons name="add-circle" size={20 } color="#6A0DFF" />
             <Text style={styles.NoticesText}>My Notices</Text>
           </TouchableOpacity>
         </View>
@@ -232,47 +232,21 @@ const NoticeBoard = () => {
       <View style={styles.header}>
         <Text style={styles.title}>Notice Board</Text>
         <View style={styles.filterButton}>
-          <TouchableOpacity onPress={() => setFilterVisible(true)}>
-            <FilterEdit size={24} variant="Linear" color="#697689" />
+          <TouchableOpacity  onPress={() => setShowMain(true)}>
+            <FilterEdit size={24} variant="Linear" color="#697689"/>
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* BUTTONS TO OPEN POPUPS */}
-      <TouchableOpacity onPress={() => setShowSchool(true)}>
-        <Text>Choose School</Text>
-      </TouchableOpacity>
+        {/* SELECTED FILTER TAGS */}
+        <View style={styles.tagContainer}>
+          {school && <View style={styles.tag}><Text style={styles.tagText}>School: {school}</Text></View>}
+          {faculty && <View style={styles.tag}><Text style={styles.tagText}>Faculty: {faculty}</Text></View>}
+          {department && <View style={styles.tag}><Text style={styles.tagText}>Department: {department}</Text></View>}
+          {classLevel && <View style={styles.tag}><Text style={styles.tagText}>Class: {classLevel}</Text></View>}
+        </View>
 
-      {/* FILTER BUTTON */}
-      <TouchableOpacity
-        onPress={() => setShowMain(true)}
-        style={styles.filterBtn}
-      >
-        <Ionicons name="filter" size={22} color="#fff" />
-        <Text style={styles.filterText}>Filter</Text>
-      </TouchableOpacity>
-
-      {/* SELECTED FILTER TAGS */}
-      <View style={styles.tagContainer}>
-        {school && <View style={styles.tag}>
-          <Text style={styles.tagText}>School: {school}</Text>
-          <Ionicons onPress={() => setSchool(null)} name="close" size={16} color="#fff" />
-        </View>}
-        {faculty && <View style={styles.tag}>
-          <Text style={styles.tagText}>Faculty: {faculty}</Text>
-          <Ionicons onPress={() => setFaculty(null)} name="close" size={16} color="#fff" />
-        </View>}
-        {department && <View style={styles.tag}>
-          <Text style={styles.tagText}>Department: {department}</Text>
-          <Ionicons onPress={() => setDepartment(null)} name="close" size={16} color="#fff" />
-        </View>}
-        {classLevel && <View style={styles.tag}>
-          <Text style={styles.tagText}>Class: {classLevel}</Text>
-          <Ionicons onPress={() => setClassLevel(null)} name="close" size={16} color="#fff" />
-        </View>}
-      </View>
-
-      <MainFilterPopup
+        <MainFilterPopup
         visible={showMain}
         onClose={() => setShowMain(false)}
         onSelectSchool={() => { setShowMain(false); setShowSchool(true); }}
@@ -285,7 +259,7 @@ const NoticeBoard = () => {
         department={department}
         className={classLevel}
       />
-      
+       {/* INDIVIDUAL SELECT POPUPS */}
       <FilterSelectPopup
         visible={showSchool}
         title="School"
@@ -318,7 +292,7 @@ const NoticeBoard = () => {
         onApply={setClassLevel}
       />
 
-
+    
 
       {/* DYNAMICALLY RENDER NOTICES */}
       {notices.map((item) => (
@@ -373,77 +347,77 @@ const NoticeBoard = () => {
           <View style={styles.actions}>
             <View style={styles.actionItems}>
               <View style={styles.actionItem}>
-                <Like1 size={18} color="#697689" />
+                <Like1 size={18} color="#697689"/>
                 <Text style={styles.actionText}>Lik</Text>
               </View>
               <View style={styles.actionItem}>
-                <Dislike size={18} color="#697689" />
+                <Dislike size={18} color="#697689"/>
                 <Text style={styles.actionText}>1.2k</Text>
               </View>
               <View style={styles.actionItem}>
-                <Send2 size={18} color="#697689" />
+                <Send2 size={18} color="#697689"/>
                 <Text style={styles.actionText}></Text>
               </View>
             </View>
-            <Flag size={18} color="#697689" />
+            <Flag size={18} color="#697689"/>
           </View>
         </View>
       ))}
 
       {/* FILTER POPUP */}
+    
+    <Modal
+      visible={filterVisible}
+      transparent
+      animationType="slide"
+      onRequestClose={() => setFilterVisible(false)}
+    >
+      <View style={styles.modalOverlay}>
+        <View style={styles.modalContent}>
 
-      <Modal
-        visible={filterVisible}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setFilterVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-
-            {/* HEADER */}
-            <View style={styles.modalHeader}>
-              <TouchableOpacity onPress={() => setFilterVisible(false)}>
-                <Ionicons name="close" size={22} color="#000" />
-              </TouchableOpacity>
-
-              <Text style={styles.modalTitle}>Filter by</Text>
-
-              <TouchableOpacity>
-                <Text style={styles.clearText}>Clear</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* TOGGLE */}
-            <View style={styles.toggleRow}>
-              <View>
-                <Text style={styles.toggleLabel}>For you</Text>
-                <Text style={styles.toggleSubText}>
-                  Based on your school, department, and class
-                </Text>
-              </View>
-              <Switch />
-            </View>
-
-            {/* OPTIONS */}
-            {["School", "Faculty", "Department", "Class"].map((item, index) => (
-              <TouchableOpacity key={index} style={styles.optionRow}>
-                <Text style={styles.optionText}>{item}</Text>
-                <Ionicons name="chevron-forward" size={20} color="#333" />
-              </TouchableOpacity>
-            ))}
-
-            {/* APPLY BUTTON */}
-            <TouchableOpacity style={styles.applyBtn}>
-              <Text style={styles.applyBtnText}>Apply</Text>
+          {/* HEADER */}
+          <View style={styles.modalHeader}>
+            <TouchableOpacity onPress={() => setFilterVisible(false)}>
+              <Ionicons name="close" size={22} color="#000" />
             </TouchableOpacity>
 
+            <Text style={styles.modalTitle}>Filter by</Text>
+
+            <TouchableOpacity>
+              <Text style={styles.clearText}>Clear</Text>
+            </TouchableOpacity>
           </View>
+
+          {/* TOGGLE */}
+          <View style={styles.toggleRow}>
+            <View>
+              <Text style={styles.toggleLabel}>For you</Text>
+              <Text style={styles.toggleSubText}>
+                Based on your school, department, and class
+              </Text>
+            </View>
+            <Switch />
+          </View>
+
+          {/* OPTIONS */}
+          {["School", "Faculty", "Department", "Class"].map((item, index) => (
+            <TouchableOpacity key={index} style={styles.optionRow}>
+              <Text style={styles.optionText}>{item}</Text>
+              <Ionicons name="chevron-forward" size={20} color="#333" />
+            </TouchableOpacity>
+          ))}
+
+          {/* APPLY BUTTON */}
+          <TouchableOpacity style={styles.applyBtn}>
+            <Text style={styles.applyBtnText}>Apply</Text>
+          </TouchableOpacity>
+
         </View>
-      </Modal>
-    </ScrollView>
+      </View>
+    </Modal>
+  </ScrollView>
   );
-};
+};  
 
 export default NoticeBoard;
 
@@ -499,7 +473,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#777",
     marginTop: 3,
-
+   
   },
 
   badge: {
@@ -564,7 +538,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     gap: 8,
-
+    
   },
 
   actionFlag: {
@@ -582,81 +556,81 @@ const styles = StyleSheet.create({
   },
 
   modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.3)",
-    justifyContent: "flex-end",
-  },
+  flex: 1,
+  backgroundColor: "rgba(0,0,0,0.3)",
+  justifyContent: "flex-end",
+},
 
-  modalContent: {
-    backgroundColor: "#fff",
-    padding: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    height: "65%",
-  },
+modalContent: {
+  backgroundColor: "#fff",
+  padding: 20,
+  borderTopLeftRadius: 20,
+  borderTopRightRadius: 20,
+  height: "65%",
+},
 
-  modalHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
+modalHeader: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+},
 
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-  },
+modalTitle: {
+  fontSize: 18,
+  fontWeight: "700",
+},
 
-  clearText: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#6A0DFF",
-  },
+clearText: {
+  fontSize: 14,
+  fontWeight: "500",
+  color: "#6A0DFF",
+},
 
-  toggleRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginVertical: 20,
-  },
+toggleRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginVertical: 20,
+},
 
-  toggleLabel: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
+toggleLabel: {
+  fontSize: 16,
+  fontWeight: "600",
+},
 
-  toggleSubText: {
-    fontSize: 12,
-    color: "#777",
-  },
+toggleSubText: {
+  fontSize: 12,
+  color: "#777",
+},
 
-  optionRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 14,
-    borderBottomColor: "#eee",
-    borderBottomWidth: 1,
-  },
+optionRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  paddingVertical: 14,
+  borderBottomColor: "#eee",
+  borderBottomWidth: 1,
+},
 
-  optionText: {
-    fontSize: 15,
-    fontWeight: "500",
-  },
+optionText: {
+  fontSize: 15,
+  fontWeight: "500",
+},
 
-  applyBtn: {
-    backgroundColor: "#6A0DFF",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginTop: 30,
-  },
+applyBtn: {
+  backgroundColor: "#6A0DFF",
+  paddingVertical: 14,
+  borderRadius: 10,
+  marginTop: 30,
+},
 
-  applyBtnText: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-  },
+applyBtnText: {
+  textAlign: "center",
+  color: "#fff",
+  fontSize: 16,
+  fontWeight: "700",
+},
 
-  filterBtn: {
+filterBtn: {
     flexDirection: "row",
     backgroundColor: "#7A32FF",
     padding: 12,
@@ -674,7 +648,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 15,
     gap: 10,
-    marginBottom: 20,
   },
   tag: {
     backgroundColor: "#7A32FF",
