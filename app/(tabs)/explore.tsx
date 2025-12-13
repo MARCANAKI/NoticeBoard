@@ -285,7 +285,7 @@ const NoticeBoard = () => {
         department={department}
         className={classLevel}
       />
-      {/* INDIVIDUAL SELECT POPUPS */}
+      
       <FilterSelectPopup
         visible={showSchool}
         title="School"
