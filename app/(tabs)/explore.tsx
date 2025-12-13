@@ -668,6 +668,8 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 14,
     borderRadius: 20,
+    gap: 6,
+    alignItems: "center",
   },
   tagText: {
     color: "#fff",
