@@ -242,19 +242,19 @@ const NoticeBoard = () => {
       <View style={styles.tagContainer}>
         {school && <View style={styles.tag}>
           <Text style={styles.tagText}>School: {school}</Text>
-          <Ionicons onPress={() => setSchool(null)} name="close" size={16} color="#fff" />
+          <Ionicons onPress={() => setSchool(null)} name="close" size={20} color="#fff" />
         </View>}
         {faculty && <View style={styles.tag}>
           <Text style={styles.tagText}>Faculty: {faculty}</Text>
-          <Ionicons onPress={() => setFaculty(null)} name="close" size={16} color="#fff" />
+          <Ionicons onPress={() => setFaculty(null)} name="close" size={20} color="#fff" />
         </View>}
         {department && <View style={styles.tag}>
           <Text style={styles.tagText}>Department: {department}</Text>
-          <Ionicons onPress={() => setDepartment(null)} name="close" size={16} color="#fff" />
+          <Ionicons onPress={() => setDepartment(null)} name="close" size={20} color="#fff" />
         </View>}
         {classLevel && <View style={styles.tag}>
           <Text style={styles.tagText}>Class: {classLevel}</Text>
-          <Ionicons onPress={() => setClassLevel(null)} name="close" size={16} color="#fff" />
+          <Ionicons onPress={() => setClassLevel(null)} name="close" size={20} color="#fff" />
         </View>}
       </View>
 
@@ -485,6 +485,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#777",
     marginTop: 3,
+    
 
   },
 

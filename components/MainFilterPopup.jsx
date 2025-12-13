@@ -32,7 +32,7 @@ const MainFilterPopup = ({
           {/* HEADER */}
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose}>
-              <Ionicons name="close" size={24} />
+              <Ionicons name="close" size={28} />
             </TouchableOpacity>
 
             <Text style={styles.title}>Filter by</Text>
