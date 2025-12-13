@@ -17,6 +17,10 @@ const MainFilterPopup = ({
   onSelectDept,
   onSelectClass,
   onApply,
+  school,
+  faculty,
+  department,
+  className,
 }) => {
   const [forYou, setForYou] = useState(true);
 
