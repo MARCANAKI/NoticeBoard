@@ -1,12 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
-    Modal,
-    StyleSheet,
-    Switch,
-    Text,
-    TouchableOpacity,
-    View,
+  Modal,
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const MainFilterPopup = ({
@@ -55,18 +55,25 @@ const MainFilterPopup = ({
 
           {/* NAVIGATION ITEMS */}
           {[
-            { label: "School", action: onSelectSchool },
-            { label: "Faculty", action: onSelectFaculty },
-            { label: "Department", action: onSelectDept },
-            { label: "Class", action: onSelectClass },
+            { label: "School", action: onSelectSchool, name: school },
+            { label: "Faculty", action: onSelectFaculty, name: faculty },
+            { label: "Department", action: onSelectDept, name: department },
+            { label: "Class", action: onSelectClass, name: className },
           ].map((item, index) => (
             <TouchableOpacity
               key={index}
               style={styles.optionRow}
               onPress={item.action}
             >
-              <Text style={styles.optionText}>{item.label}</Text>
-              <Ionicons name="chevron-forward" size={20} />
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                <Text style={styles.optionText}>{item.label}</Text>
+                <Ionicons name="chevron-forward" size={20} />
+              </View>
+              {item.name &&
+                <Text style={styles.optionText}>
+                  {item.name}
+                </Text>
+              }
             </TouchableOpacity>
           ))}
 
@@ -123,7 +130,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   optionRow: {
-    flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 14,
     borderBottomWidth: 0.4,
